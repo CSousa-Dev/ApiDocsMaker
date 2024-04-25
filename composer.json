@@ -1,0 +1,25 @@
+{
+    "name": "renat/swagger-docs-maker",
+    "description": "Designed to assist in creating API documentation in the OpenAPI standard, this tool is built to be reusable and decoupled from your application. Leveraging PHP attribute feature, it simplifies the process of generating Swagger docs effortlessly",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "DocsMaker\\": "src/",
+            "Test\\": "Test/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Renato Sousa",
+            "email": "renatosousa@sousadev.me"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require-dev": {
+        "phpunit/phpunit": "^11"
+    },
+    "require": {
+        "symfony/yaml": "^7.0"
+    }
+}
