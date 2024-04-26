@@ -2,6 +2,7 @@
 namespace Test\FakeApi\ValidsResources;
 
 use DocsMaker\Attributes\Method;
+use DocsMaker\Attributes\Response;
 use DocsMaker\Attributes\ApiResource;
 use DocsMaker\Attributes\ResourcePath;
 
@@ -14,6 +15,7 @@ class SomeCorrectResource
         sumary: 'Lorem ipsum dolor sit amet'
     )]
     #[Method('GET')]	
+    #[Response(200, 'Success')]
     public function get()
     {
         return 'GET';
@@ -25,6 +27,7 @@ class SomeCorrectResource
         sumary: 'Lorem ipsum dolor sit amet'
     )]
     #[Method('POST')]
+    #[Response(200, 'Success')]
     public function post()
     {
         return 'POST';
@@ -36,6 +39,7 @@ class SomeCorrectResource
         sumary: 'Lorem ipsum dolor sit amet'
     )]
     #[Method('PUT')]
+    #[Response(200, 'Success')]
     public function put()
     {
         return 'PUT';
@@ -47,6 +51,7 @@ class SomeCorrectResource
         sumary: 'Lorem ipsum dolor sit amet'
     )]
     #[Method('DELETE')]
+    #[Response(200, 'Success')]
     public function delete()
     {
         return 'DELETE';
@@ -58,6 +63,7 @@ class SomeCorrectResource
         sumary:      'Lorem ipsum dolor sit amet'
     )]
     #[Method(name:'PATCH')]
+    #[Response(200, 'Success')]
     public function patch()
     {
         return 'PATCH';

@@ -32,6 +32,12 @@ class AttributeFinder {
                 } else {
                     $namespace = '';
                 }
+
+                $baseNamespace = explode('\\', $namespace)[0];
+
+                if($this->namespace != $baseNamespace) {
+                    continue;
+                }
                 
                 if (preg_match('/class\s+(\w+)/', $content, $matchesClass)) {
                     $className = $matchesClass[1];

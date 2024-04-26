@@ -10,7 +10,6 @@ class OnFindApiResource implements OnFindInterface
 {
     private ReflectionClass $reflectionClass;
 
-
     public function execute(ReflectionClass $reflectionClass)
     {
         $this->reflectionClass = $reflectionClass;
@@ -23,6 +22,8 @@ class OnFindApiResource implements OnFindInterface
         if(count($this->reflectionClass->getAttributes(ApiResource::class)) > 1) 
             throw new MultiplesApiResourcePerClassException();
         
-        return $this->reflectionClass->getAttributes(ApiResource::class)[0]->newInstance();
+        $apiResource = $this->reflectionClass->getAttributes(ApiResource::class)[0]->newInstance();
+        $apiResource->setRefClass($this->reflectionClass);
+        return $apiResource;
     }
 }

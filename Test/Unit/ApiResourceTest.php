@@ -14,8 +14,8 @@ class ApiResourceTest extends TestCase
     {
         $newFakeClass = new FakeClass();
         $reflectionClass = new ReflectionClass($newFakeClass);
-        $onFindApiResource = new OnFindApiResource($reflectionClass);
-        $this->assertTrue($onFindApiResource->resource() instanceof ApiResource);
+        $onFindApiResource = new OnFindApiResource();
+        $this->assertTrue($onFindApiResource->execute($reflectionClass) instanceof ApiResource);
     }
 
     public function testClassContainMultipleApiResourceThrowsException()
@@ -24,7 +24,8 @@ class ApiResourceTest extends TestCase
         $reflectionClass = new ReflectionClass($newFakeClass);
         $this->expectExceptionMessage('Only one ApiResource attribute is allowed per class');
         $this->expectException(MultiplesApiResourcePerClassException::class);
-        new OnFindApiResource($reflectionClass);
+        $onFindApiResource = new OnFindApiResource();   
+        $onFindApiResource->execute($reflectionClass);
     }
 
     public function testApiResourceWithExternalDocsWithLinkWithoutNameThrowsException()
@@ -33,7 +34,8 @@ class ApiResourceTest extends TestCase
         $reflectionClass = new ReflectionClass($newFakeClass);
         $this->expectExceptionMessage('If you want to use linkForExternalDocumentation, you need to pass externalDocsLinkName.');
         $this->expectException(ExternalDocsWithoutName::class);
-        new OnFindApiResource($reflectionClass);
+        $onFindApiResource = new OnFindApiResource();   
+        $onFindApiResource->execute($reflectionClass);
     }
 
     public function testApiResourceWithExternalDocsWithNameWithoutLinkThrowsException()
@@ -42,7 +44,8 @@ class ApiResourceTest extends TestCase
         $reflectionClass = new ReflectionClass($newFakeClass);
         $this->expectExceptionMessage('If you want to use externalDocsLinkName, you need to pass linkForExternalDocumentation.');
         $this->expectException(ExternalDocsWithoutLink::class);
-        new OnFindApiResource($reflectionClass);
+        $onFindApiResource = new OnFindApiResource();   
+        $onFindApiResource->execute($reflectionClass);
     }
 
 }
