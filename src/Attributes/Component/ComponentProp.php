@@ -131,12 +131,15 @@ class ComponentProp
             'required'          => $this->required,
             'deprecated'        => $this->deprecated,
             'allowEmptyValue'   => $this->allowEmptyValue,
-            'explode'           => $this->explode
-            // 'arrayItems'        => $this->arrayItems?->toArray()
+            'explode'           => $this->explode,
         ];
 
         if($this->refComponenteClassName !== null){
             $array = ['$ref' => '#/components/schemas/' . $this->refComponenteClassName];
+        }
+
+        if($this->arrayItems !== null){
+            $array['items'] = $this->arrayItems->toArray();
         }
         
 

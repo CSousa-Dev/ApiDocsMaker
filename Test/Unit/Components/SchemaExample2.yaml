@@ -4,7 +4,3 @@ properties:
     $ref: '#/components/schemas/Test Other Schema'
   arrayTest:
     type: array
-    items:
-      type: array
-      items:
-        type: string

@@ -57,7 +57,7 @@ class SchemaComponentTest extends TestCase
         $yaml = Yaml::dump($schemaArray, 16, 2);
         file_put_contents(__DIR__ . '/SchemaTest1.yaml', $yaml);
         $this->assertEquals(
-            str_replace( '\\r\\n' , '\\n', file_get_contents(__DIR__ . '/SchemaExemple1.yaml')),
+            preg_replace("/\r\n/", "\n", file_get_contents(__DIR__ . '/SchemaExample1.yaml')),
             file_get_contents(__DIR__ . '/SchemaTest1.yaml')
         );
     }
@@ -71,7 +71,7 @@ class SchemaComponentTest extends TestCase
         $yaml = Yaml::dump($schemaArray, 16, 2);
         file_put_contents(__DIR__ . '/SchemaTest2.yaml', $yaml);
         $this->assertEquals(
-            str_replace( '\\r\\n' , '\\n', file_get_contents(__DIR__ . '/SchemaExemple2.yaml')),
+            preg_replace("/\r\n/", "\n", file_get_contents(__DIR__ . '/SchemaExample2.yaml')),
             file_get_contents(__DIR__ . '/SchemaTest2.yaml')
         );
     }

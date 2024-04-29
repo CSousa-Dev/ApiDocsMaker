@@ -23,8 +23,6 @@ class Schema
     public function toArray()
     {
 
-        
-
         $properties['type'] = $this->property->type();   
         $properties['type'] = $this->property->toArray();
         $properties['title'] = $this->title;

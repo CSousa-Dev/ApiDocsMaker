@@ -13,7 +13,7 @@ use InvalidArgumentException;
 
 class ArrayItems 
 {
-    private string $refComponent;
+    private ?string $refComponent = null;
     private ReflectionProperty $refPropertie;
     public function __construct(
         public ?string          $type               = null,
@@ -83,9 +83,19 @@ class ArrayItems
             'allowEmptyValue'   => $this->allowEmptyValue,
             'explode'           => $this->explode,
             'refComponent'      => $this->refComponent,
-            'arrayItems'        => $this->arrayItems?->toArray()
         ];
+
+        if($this->arrayItems !== null) {
+            $array['items'] = $this->arrayItems->toArray();
+        }
+
+        $filteredValues = [];
+        foreach ($array as $key => $value) {
+            if (!empty($value) && $value !== null) {
+                $filteredValues[$key] = $value;
+            }
+        }
         
-        return $array;
+        return $filteredValues;
     }
 }

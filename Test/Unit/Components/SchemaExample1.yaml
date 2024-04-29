@@ -3,10 +3,10 @@ properties:
   name:
     type: string
   anotherSchema:
-    type: object
+    $ref: '#/components/schemas/Another Schema'
   description:
     type: string
   floatProp:
-    type: float
+    type: number
   intProp:
-    type: int
+    type: integer
