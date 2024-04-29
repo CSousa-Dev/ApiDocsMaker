@@ -1,6 +1,8 @@
 <?php 
+namespace DocsMaker\Attributes\Schema\Properties;
 
 Interface PropertyInterface
 {
-    public function Type(): string;
+    public function type(): string;
+    public function toArray(): array;
 }

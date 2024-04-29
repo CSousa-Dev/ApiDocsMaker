@@ -1,0 +1,12 @@
+description: 'Schema Test Description'
+properties:
+  name:
+    type: string
+  anotherSchema:
+    $ref: '#/components/schemas/Another Schema'
+  description:
+    type: string
+  floatProp:
+    type: number
+  intProp:
+    type: integer

@@ -3,53 +3,46 @@ namespace DocsMaker\Attributes\Schema\Properties;
 
 use Attribute;
 use DocsMaker\Attributes\Schema\Properties\PropertyInterface;
-
 #[Attribute]
-class PropString implements PropertyInterface
+class PropNumber implements PropertyInterface
 {
     public function __construct(
-        public readonly ?string $name = null,
+        public readonly ?string $name = '',
         public readonly ?bool $required = false,
-        public readonly ?string $format = '',
-        public readonly ?string $pattern = '',
-        public readonly ?int $minLength = null,
-        public readonly ?int $maxLength = null,
-        public readonly ?string $default = '',
-        public readonly ?bool $deprecated = false,
-        public readonly ?string $title = '',
         public readonly ?string $description = '',
-        public readonly ?string $example = '',
+        public readonly ?string $format = '',
+        public readonly ?int $minimum = null,
+        public readonly ?int $maximum = null,
+        public readonly ?int $default = null,
         public readonly ?bool $nullable = false,
+        public readonly ?string $example = '',
+        public readonly ?string $title = '',
         public readonly ?array $enum = []
-    )
-    {
-    }
+    ){}
 
     public function type(): string
     {
-        return 'string';
+        return 'number';
     }
 
     public function toArray(): array
     {
         $array = [
-            'type' => $this->Type(),
+            'type' => $this->type(),
             'required' => $this->required,
-            'format' => $this->format,
-            'pattern' => $this->pattern,
-            'minLength' => $this->minLength,
-            'maxLength' => $this->maxLength,
-            'default' => $this->default,
-            'deprecated' => $this->deprecated,
-            'title' => $this->title,
             'description' => $this->description,
-            'example' => $this->example,
+            'format' => $this->format,
+            'minimum' => $this->minimum,
+            'maximum' => $this->maximum,
+            'default' => $this->default,
             'nullable' => $this->nullable,
+            'title' => $this->title,
+            'example' => $this->example,
             'enum' => [
                 ...$this->enum
-            ] 
-        ];  
-
+            ]
+        ];
+    
         $filteredValues = [];
         foreach ($array as $key => $value) {
             if (!empty($value) && $value !== null) {
@@ -59,4 +52,5 @@ class PropString implements PropertyInterface
 
         return $filteredValues;
     }
+    
 }

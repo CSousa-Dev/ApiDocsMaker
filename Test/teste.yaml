@@ -1,0 +1,16 @@
+type: object
+properties:
+  name:
+    type: string
+  name2:
+    type: string
+  name3:
+    type: object
+    properties:
+      name:
+        type: string
+
+      // Escrevendo o YAML em um arquivo na raiz do seu projeto
+        file_put_contents(__DIR__ . '/../teste.yaml', $yaml);
+        exit();
+        $this->assertEquals('object', $array['type']);

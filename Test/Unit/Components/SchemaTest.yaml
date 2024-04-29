@@ -1,0 +1,12 @@
+description: 'Schema Test Description'
+properties:
+  name:
+    type: string
+  anotherSchema:
+    type: object
+  description:
+    type: string
+  floatProp:
+    type: float
+  intProp:
+    type: int

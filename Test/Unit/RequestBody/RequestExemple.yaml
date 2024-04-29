@@ -1,0 +1,30 @@
+description: 'Some request body'
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 100000
+        address:
+          type: array
+          items:
+            type: object
+            description: 'testes testosos'
+            properties:
+              teste:
+                type: string
+              teste2:
+                type: array
+                items:
+                  type: string
+                  enum:
+                    - teste
+                    - teste2
+              reference:
+                type: string
+                example: testes
+        username:
+          type: string

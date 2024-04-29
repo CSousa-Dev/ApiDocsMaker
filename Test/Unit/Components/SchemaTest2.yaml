@@ -1,0 +1,6 @@
+description: 'Another Schema Description'
+properties:
+  objetoToOtherSchema:
+    $ref: '#/components/schemas/Test Other Schema'
+  arrayTest:
+    type: array

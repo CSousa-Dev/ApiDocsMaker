@@ -5,18 +5,18 @@ use ReflectionClass;
 use DocsMaker\OnFindInterface;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
+use DocsMaker\Attributes\ApiResource;
 
 class AttributeFinder {
-    
     private $resource = [];
     protected $namespace;
     protected $rootPath;
-    
+
     public function __construct($namespace, $rootPath) {
         $this->namespace = $namespace;
         $this->rootPath = $rootPath;
     }
-    
+
     public function findAttribute(OnFindInterface $onFindInterface, $attributeName)
     {
         $iterator = new RecursiveIteratorIterator(
