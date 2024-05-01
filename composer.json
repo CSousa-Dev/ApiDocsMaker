@@ -1,7 +1,7 @@
 {
     "name": "sousa-dev/api-docs",
     "description": "Designed to assist in creating API documentation in the OpenAPI standard, this tool is built to be reusable and decoupled from your application. Leveraging PHP attribute feature, it simplifies the process of generating Swagger docs effortlessly",
-    "type": "project",
+    "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
