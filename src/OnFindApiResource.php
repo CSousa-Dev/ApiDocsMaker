@@ -18,7 +18,6 @@ class OnFindApiResource implements OnFindInterface
 
     private function extractApiResourceAttribute()
     {
-
         if(count($this->reflectionClass->getAttributes(ApiResource::class)) > 1) 
             throw new MultiplesApiResourcePerClassException();
         

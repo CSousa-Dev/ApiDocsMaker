@@ -3,7 +3,6 @@ namespace DocsMaker\Attributes;
 
 use Attribute;
 use DocsMaker\Attributes\Schema\Properties\PropertyInterface;
-use DocsMaker\Attributes\Schema\Schema;
 
 #[Attribute]
 class Response

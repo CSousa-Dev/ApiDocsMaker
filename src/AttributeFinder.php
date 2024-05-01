@@ -19,6 +19,7 @@ class AttributeFinder {
 
     public function findAttribute(OnFindInterface $onFindInterface, $attributeName)
     {
+        $this->resource = [];
         $iterator = new RecursiveIteratorIterator(
             new RecursiveDirectoryIterator($this->rootPath, RecursiveDirectoryIterator::SKIP_DOTS),
             RecursiveIteratorIterator::SELF_FIRST
@@ -54,7 +55,7 @@ class AttributeFinder {
         }
     }
 
-    public function resources(): array
+    public function match(): array
     {
         return $this->resource;
     }

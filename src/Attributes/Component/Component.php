@@ -42,4 +42,6 @@ abstract class Component
 
         return $props;
     }
+
+    public abstract function setRefClass(ReflectionClass $class);
 }

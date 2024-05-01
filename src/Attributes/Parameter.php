@@ -9,16 +9,17 @@ use PhpParser\Builder\Property;
 class Parameter
 {
     public function __construct(
-        public string $name,
-        public string $in,
-        public PropertyInterface $schema,
-        public ?string $description,
-        public ?bool $required = true,
-        public ?string $deprecated = null,
-        public ?string $allowEmptyValue = null,
-        public ?string $explode = '',
-        public ?string $example = '',
-        public ?string $schemaRef = '',
+        public string               $name,
+        public string               $in,
+        public PropertyInterface    $schema,
+        public readonly ?string     $description,
+        public readonly ?bool       $required = true,
+        public readonly ?string     $deprecated = null,
+        public readonly ?string     $allowEmptyValue = null,
+        public readonly ?string     $explode = '',
+        public readonly ?string     $example = '',
+        public readonly ?string     $schemaRef = '',
+        public readonly ?string     $forPath = ''
     )
     {
     }
@@ -45,5 +46,10 @@ class Parameter
         }
 
         return $filteredValues;
+    }
+
+    public function isInPath()
+    {
+        return strtolower($this->in) === 'path';
     }
 }

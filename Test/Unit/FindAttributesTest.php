@@ -17,7 +17,7 @@ class FindAttributesTest extends TestCase
     {
         $attributesFinder = new AttributeFinder('Test', "C:\\\Users\\renat\\Documents\\Projetos\\SwaggerDocsMaker\\Test\\FakeApi\\ValidsResources");
         $attributesFinder->findAttribute(new OnFindApiResource, ApiResource::class);
-        $this->apiResources =  $attributesFinder->resources();
+        $this->apiResources =  $attributesFinder->match();
     }
 
     public function testFindApiResourceAttribute()

@@ -1,0 +1,70 @@
+tags:
+  -
+    name: Resource1
+    description: 'Resource1 description<br>Another Description for Resource1'
+paths:
+  '/resource1/{id}/{name}':
+    get:
+      tags:
+        - Resource1
+      summary: 'Resource1 get'
+      description: GET
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Id of the resource'
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Resource1 updated'
+  /resource1:
+    get:
+      tags:
+        - Resource1
+      summary: 'Resource1 get'
+      description: GET
+      responses:
+        200:
+          description: 'Resource1 updated'
+    put:
+      tags:
+        - Resource1
+      summary: 'Resource1 get'
+      description: PUT
+      responses:
+        200:
+          description: 'Resource1 updated'
+components:
+  schemas:
+    'Another Schema':
+      description: 'Another Schema Description'
+      properties:
+        objetoToOtherSchema:
+          $ref: '#/components/schemas/Test Other Schema'
+        arrayTest:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+    'Test Other Schema':
+      description: 'Another Schema Description'
+      properties:
+        name:
+          type: string
+    'Schema Test':
+      description: 'Schema Test Description'
+      properties:
+        name:
+          type: string
+        anotherSchema:
+          $ref: '#/components/schemas/Another Schema'
+        description:
+          type: string
+        floatProp:
+          type: number
+        intProp:
+          type: integer

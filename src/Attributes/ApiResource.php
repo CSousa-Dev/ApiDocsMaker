@@ -4,6 +4,7 @@ namespace DocsMaker\Attributes;
 use Attribute;
 use ReflectionClass;
 use DocsMaker\Attributes\Parameter;
+use DocsMaker\Attributes\GroupedPaths;
 use DocsMaker\Exceptions\ExternalDocsWithoutLink;
 use DocsMaker\Exceptions\ExternalDocsWithoutName;
 use DocsMaker\Exceptions\TwoIdenticalPathsException;
@@ -14,8 +15,9 @@ class ApiResource
     private ReflectionClass $refClass;
     private array $globalParams;
     private array $paths = [];
+    private array $groupedPaths = [];
     public function __construct(
-        public string $name,
+        public readonly string $name,
         public string $description,
         public ?string $linkForExternalDoc = null,
         public ?string $externalDocsLinkName = null,
@@ -30,11 +32,24 @@ class ApiResource
         }
 
         $this->globalParams = $globalParams;
+        $this->verifyGlobalParamsHasPath();
     }
 
     public function setRefClass(ReflectionClass $class)
     {
         $this->refClass = $class;
+    }
+
+    private function getGlobalParamsForPath($pathName)
+    {
+        $params = [];
+        foreach($this->globalParams as $param) {
+            if($param->forPath === $pathName) {
+                $params[] = $param;
+            }
+        }
+
+        return $params;
     }
 
     public function startAttributesAssembly()
@@ -79,5 +94,51 @@ class ApiResource
     public function getPaths()
     {
         return $this->paths;
+    }
+
+    private function verifyGlobalParamsHasPath()
+    {
+        /**
+         * @var Parameter $param
+         */
+        foreach($this->globalParams as $param) {
+            if(is_null($param->forPath)) {
+                throw new \Exception('Global parameters must have a path');
+            }
+        }
+    }
+
+    public function addResource(ApiResource $anotherResource)
+    {
+        $mergedPaths = array_merge($this->paths, $anotherResource->getPaths());
+        $this->description .= "<br>" . $anotherResource->description;
+        $mergedGlobalParams =  array_merge($this->globalParams, $anotherResource->globalParams);
+        $this->paths = $mergedPaths;
+        $this->globalParams = $mergedGlobalParams;
+        $this->checkHasIdenticalPathAndMethod();    
+    }
+
+    public function sameResource(ApiResource $apiResource)
+    {
+        return $this->name === $apiResource->name;
+    }
+
+    public function groupPathsByName()
+    {
+        $grouped = [];
+        foreach($this->paths as $path) {
+            $grouped[$path->name][] = $path;
+        }
+
+        foreach($grouped as $pathName => $paths) {
+            $groupedPath = new GroupedPaths($pathName, $this->name, ...$paths);
+            $groupedPath->setGlobalParams(...$this->getGlobalParamsForPath($pathName));
+            $this->groupedPaths[] = new GroupedPaths($pathName, $this->name, ...$paths);
+        }
+    }
+
+    public function groupedPaths()
+    {
+        return $this->groupedPaths;
     }
 }
