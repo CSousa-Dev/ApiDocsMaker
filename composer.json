@@ -26,6 +26,6 @@
         "test": "php vendor/bin/phpunit --testdox --colors "
     },
     "bin": [
-        "bin/docs-maker"
+        "api-docs"
     ]
 }
